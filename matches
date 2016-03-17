@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# matches pattern file1 file2 file3 ...
+#
+# file1: 5 matches
+# file2: 0 matches
+# file3: 10 matches
+
+pattern="$1"
+shift
+
+for filename in "$@"
+do
+    count=`mygrep "$pattern" "$filename" | wc | awk '{print $1}'`
+    echo $filename:$count "matches"
+done
+
